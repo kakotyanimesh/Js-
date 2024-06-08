@@ -8,7 +8,7 @@ class Node{
 class linkedList{
     constructor(){
         this.head = null
-    }
+    } 
 }
 
 linkedList.prototype.insertAtBeginning = function (data){
@@ -35,6 +35,7 @@ linkedList.prototype.insertAtEnd = function (data){
 linkedList.prototype.insertAfter = function (prevNode, data) {
     if(!prevNode){
         console.log("prev node cant be empty");
+        return 
     }
 
     const newNode = new Node(data, prevNode)
@@ -95,4 +96,35 @@ linkedList.prototype.deleteByKey = function (key){
         }
         current = current.next
     }
+}
+
+
+// search 
+
+linkedList.prototype.searchByKey = function (key) {
+    let current = this.head
+    while(current){
+        if(current.data === key ){
+            return true
+        }
+        
+    }
+    return false 
+}
+
+
+// traverse
+
+linkedList.prototype.printList = function () {
+    let current = this.head
+    
+    let listValues = []
+
+    while(current){
+        listValues.push(current.data)
+        current = current.next
+    }
+
+    console.log(listValues.join(" -> "));
+
 }
