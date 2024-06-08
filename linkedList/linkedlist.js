@@ -38,7 +38,7 @@ linkedList.prototype.insertAfter = function (prevNode, data) {
         return 
     }
 
-    const newNode = new Node(data, prevNode)
+    const newNode = new Node(data, prevNode.next)
     prevNode.next = newNode
 }
 
