@@ -65,7 +65,7 @@ linkedList.prototype.lastNodeDelete = function (){
         return
     }
 
-    let secondLast = head
+    let secondLast = this.head
     while(secondLast.next.next){
         secondLast = secondLast.next
     }
@@ -127,4 +127,21 @@ linkedList.prototype.printList = function () {
 
     console.log(listValues.join(" -> "));
 
+}
+
+
+// reverse 
+
+linkedList.prototype.reverse = function () {
+    let current = this.head
+    let next = null
+    let prev = null
+
+    while(current){
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    }
+    this.head = prev
 }
