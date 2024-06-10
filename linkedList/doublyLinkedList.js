@@ -37,3 +37,77 @@ doublyLinkedList.prototype.atend = function (data) {
         this.head = newNode
     }
 }
+
+// at given 
+
+doublyLinkedList.prototype.atgiven = function (prevNode, data) {
+    if(prevNode == null){
+        console.log("invalid prevNode");
+        return
+    }
+
+    const newNode = new Node(data, prevNode.next, prevNode)
+
+    if(prevNode.next !== null){
+        prevNode.next.prev = newNode
+    }
+
+    prevNode.next = newNode
+
+    if(newNode === null){
+        this.tail = newNode
+    }
+
+}
+
+
+// deleteat first 
+
+doublyLinkedList.prototype.deleteFIRST = function () {
+    if(!this.head){
+        return // nothing to delete
+    }
+
+    if(this.head === this.tail){
+        this.head = null
+        this.tail = null
+    } else {
+        this.head = this.head.next
+        this.head.prev = null
+    }
+}
+
+
+doublyLinkedList.prototype.taildelete = function () {
+    if(!this.tail){
+        console.log("tail is empty");
+        return
+    }
+
+    if(this.head === this.tail){
+        this.head = null
+        this.tail = null
+    } else {
+        this.tail = this.tail.prev
+        this.tail.next = null
+    }
+}
+
+
+// reverser
+
+doublyLinkedList.prototype.reverse = function () {
+    let current = this.head
+    let temp = null
+
+    while(current !== null){
+        temp = current.prev
+        current.prev = current.next
+        current.next = prev
+    }
+
+    if(temp !== null){
+        this.head = this.tail
+        this.head = temp.prev
+    }
+}
