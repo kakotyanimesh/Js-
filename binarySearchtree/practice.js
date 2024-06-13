@@ -1,4 +1,4 @@
-class bstNode{
+class BstNODE{
     constructor(key){
         this.key = key
         this.left = null
@@ -9,33 +9,36 @@ class bstNode{
 class binarySearchTree{
     constructor(){
         this.root = null
+    
     }
 
     insert(key){
-        const newNode = new bstNode(key)
+        const newNODE = new BstNODE(key)
 
         if(this.root === null){
-            this.root = newNode
-        }else {
-            this.insertNode(this.root, newNode)
+            this.root = newNODE
+             
+        } else {
+            this.insertNode(this.root, newNODE)
         }
     }
 
-    insertNode(node, newNode){
-        if(newNode.key < node.key){
+    insertNode(node, newNODE){
+        if(newNODE.key < node.key){
             if(node.left === null){
-                node.left = newNode
-            } else{
-                this.insertNode(node.left, newNode)
+                node.left = newNODE
+            } else {
+                this.insertNode(node.left, newNODE)
             }
         } else {
             if(node.right === null){
-                node.right = null
+                node.right  = newNODE
             } else {
-                this.insertNode(node.right, newNode)
+                this.insertNode(node.left, newNODE)
             }
         }
     }
+
 
     delete(key){
         this.root = this.deleteNode(this.root, key)
@@ -43,19 +46,20 @@ class binarySearchTree{
 
     deleteNode(node, key){
         if(node.key === null){
-            return null
+            return null;
+
         }
 
         if(key < node.key){
             node.left = this.deleteNode(node.left, key)
-        } else if (key > node.key) {
+        } else if(key > node.key){
             node.right = this.deleteNode(node.right, key)
         } else {
             if(node.left === null && node.right === null){
                 return null
             } else if(node.left === null){
                 return node.right
-            } else if (node.right === null) {
+            } else if(node.right === null){
                 return node.left
             } else {
                 let tempNode = this.findMin(node.right)
@@ -63,11 +67,12 @@ class binarySearchTree{
                 node.right = this.deleteNode(node.right, tempNode.key)
             }
         }
+
         return node
     }
 
     findMin(node){
-        while(node.left === null){
+        while(node.left !== null){
             node = node.left
         }
         return node
