@@ -12,6 +12,8 @@ function isVowels(char) {
 
 
 function recursiveCountVowel(string, stringLength) {
+//   console.log(`Length: ${stringLength}, Current String ${string.substring(0, stringLength)}`)
+
     if(stringLength == 1){
         return Number(isVowels(string[0])) 
         // check if the 0th index is vowel or not -> true -> 1 / false -> 0 as use of Number()
@@ -19,7 +21,10 @@ function recursiveCountVowel(string, stringLength) {
     }
 
     return recursiveCountVowel(string, stringLength - 1) + isVowels(string[stringLength - 1])
-    
+
+//     let result = recursiveCountVowel(string, stringLength - 1) + isVowels(string[stringLength - 1]); 
+//   console.log(`count after checking ${string[stringLength - 1]}: ${result}`)
+//   return result
 }
 
 
