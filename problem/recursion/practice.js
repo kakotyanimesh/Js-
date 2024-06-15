@@ -1,16 +1,26 @@
 // fibonacci 
 
-function recursiveFibonacci(index) {
+// function recursiveFibonacci(index) {
     
+//     if(index <= 1){
+//         return index
+//     }
+
+//     return (recursiveFibonacci(index-1) + recursiveFibonacci(index-2))
+//     // fn = fn-1 + fn-2
+// }
+
+console.log(recursiveFibonacci(5));
+
+function recursiveFibonacci(index) {
+
     if(index <= 1){
         return index
     }
 
-    return (recursiveFibonacci(index-1) + recursiveFibonacci(index-2))
-    // fn = fn-1 + fn-2
+    return (recursiveFibonacci(index - 1) + recursiveFibonacci(index - 2))
+    
 }
-
-console.log(recursiveFibonacci(5));
 
 
 function itterativefibonacci(index) {
@@ -27,3 +37,44 @@ function itterativefibonacci(index) {
 }
 
 console.log(itterativefibonacci(5));
+
+
+
+// function recursiveRemoveTabsandSpaces(inputString) {
+//     if(inputString.length === 0){
+//         return ""
+//     }
+
+//     let firstChar = inputString[0]
+//     let reststring = inputString.slice(1)
+
+//     if(firstChar === " " || firstChar === "\t"){
+//         return recursiveRemoveTabsandSpaces(reststring)
+//     }
+
+
+
+
+//     return firstChar + recursiveRemoveTabsandSpaces(reststring)
+// }
+
+// console.log(recursiveRemoveTabsandSpaces("aneimas          adasdsad"));
+
+
+function rats(inputstring) {
+   
+    if(inputstring.length === 0){
+        return ""
+    }
+    
+    let firstchar = inputstring[0]
+    let reststring = inputstring.slice(1)
+
+    if(firstchar === " " || firstchar === "\t"){
+        return rats(reststring)
+    }
+
+    return firstchar + rats(reststring)
+}
+
+console.log(rats("a b   c"));
