@@ -25,4 +25,6 @@ function breadthfirst(graph, start) {
     return visited
 }
 
+console.log(breadthfirst(graph, 'a'));
+
 
