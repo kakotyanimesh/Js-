@@ -263,3 +263,77 @@ function recursiveGraph(graph, start, visited = new Set()) {
         recursiveGraph(graph, neighbour, visited)
     }
 }
+
+
+// graph island 
+
+const graph = {
+    a: ['b', 'c'],
+    b: ['a', 'c', 'd'],
+    c: ['a', 'b', 'd'],
+    d: ['b', 'c'],
+    e: ['f'],
+    f: ['e'],
+    h: []
+};
+
+function connectedIsland(graph) {
+    const visited = new Set()
+    let count = 0
+
+
+    function dfs(node) {
+        if (!visited.has(node)) {
+            visited.add(node)
+
+            for (const neighbour of graph[node]) {
+                dfs(neighbour)
+            }
+        }
+    }
+
+
+    for (const node in graph) {
+        if(!visited.has(node)){
+            dfs(node)
+            count++
+        }
+    }
+    return count
+}
+
+console.log(connectedIsland(graph));
+
+// biggest node
+
+function biggestIsland(graph) {
+    const visited = new Set()
+    let largest = 0
+
+
+    function dfs(node){
+        if (visited.has(node)) {
+            return 0
+        }
+        visited.add(node)
+        let size = 1
+
+        for (const neighbour of graph[node]) {
+            size += dfs(neighbour)
+        }
+        return size
+    }
+
+    for (const node in graph) {
+        if(!visited.has(node)){
+            const componentSize = dfs(node)
+
+            if (componentSize > largest) {
+                largest = componentSize
+            }
+        }
+    }
+    return largest
+}
+
+console.log(biggestIsland(graph));
