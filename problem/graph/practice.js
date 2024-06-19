@@ -337,3 +337,102 @@ function biggestIsland(graph) {
 }
 
 console.log(biggestIsland(graph));
+
+
+function connectedIsland(graph) {
+    const visited = new Set()
+    let count = 0
+
+
+    function dfs(node) {
+        if(!visited.has(node)){
+            visited.add(node)
+
+            for (const neighbour of graph[node]) {
+                dfs(neighbour)
+            }
+        }
+    }
+
+    for (const node in graph) {
+        if(!visited.has(node)){
+            dfs(node)
+            count++
+        }
+    }
+    return count
+}
+
+
+function biggestIslan(graph) {
+    const visited = new Set()
+    let largest = 0
+
+    function dfs(node) {
+        if(visited.has(node)){
+            return 0
+        }
+        visited.add(node)
+        let size = 1
+
+        for (const neighbour of graph[node]) {
+            size += dfs(neighbour)
+        }
+        return size
+    }
+
+    for (const node in graph) {
+        if(!visited.has(node)){
+            const componentSize = dfs(node)
+            if (componentSize > largest) {
+                largest = componentSize
+            }
+        }
+    }
+     return largest
+}
+
+
+function createGraph(edges) {
+    const graph = {}
+
+    for (const edge of edges) {
+        const [a, b] = edge
+
+        if(!(a in graph)){
+            graph[a] = []
+        }
+        if (!(b in graph)) {
+            graph[b] = []
+        }
+
+        graph[a].push(b)
+        graph[b].push(a)
+    }
+    return graph
+}
+
+
+function shortestPath(edges, start, dest) {
+    const graph = createGraph(edges)
+
+    const queue = [[start, 0]]
+    const visited = new Set([start])
+
+
+    while(queue.length > 0){
+        const [node, distance] = queue.shift()
+
+        if(node === dest){
+            return [node, distance]
+            // return distance
+        }
+
+        for (const neighbour of graph[node]) {
+            if(!visited.has(node)){
+                visited.add(neighbour)
+                queue.push([neighbour, distance+ 1])
+            }
+        }
+    }
+}
