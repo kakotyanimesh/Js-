@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+  background-color: #212121;
+  color: aliceblue;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+#user-input {
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 22px;
+}
+.user-card {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  display: none; /* Initially hidden */
+}
+
+.user-card img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.user-card h2 {
+  margin: 10px 0;
+}
+
+.user-card p {
+  color: #666;
+}
+
+</style>
+<body>
+    <div class="container">
+        <input type="text" id="user-input" placeholder="Type and fetch API" />
+        <div id="user-card" class="user-card"></div>
+      </div>
+
+      <script>
+        // https://randomuser.me/api/?results=1
+
+        // fetch , userdisplay , debounce
+
+        document.getElementById("user-input").addEventListener("input", debounce(fetchUser, 500))
+        // eventListner at input => debounce function is to stop unnecessary calls 
+
+        function fetchUser() {
+            const inputBox = document.getElementById("user-input").value
+
+            if(inputBox.length > 0) {
+                // no fetch if no value in inputbox => we can do without it
+                // console.log('callll') // to check debounce is working or not
+
+                fetch("https://randomuser.me/api/?results=1")
+                .then((res) => res.json())
+                .then((data) => displayUser(data.results[0]))  // results[0] => in api its written like that
+                .catch((err) => console.log(`error is `, err))
+            }
+        }
+
+        function displayUser(user) {
+            const displayU = document.getElementById("user-card")
+
+            displayU.style.display = "block" // important
+
+            displayU.innerHTML = `
+            <img src="${user.picture.large}" />
+            <p>"${user.name.title + user.name.title + user.name.title}"</p>        
+            `     
+        }
+
+        // for efficiency in api calls => make api call wait for a couple of seconds if type so quickly
+        function debounce(func, delayTime) {
+            let debounceTimer
+            // its a timer 
+            return () => {
+                const context = this  // inbuilt in function (first)
+                const args = arguments  //  also inbuilt in function 
+                clearTimeout(debounceTimer)  
+                debounceTimer = setTimeout(() => {
+                    func.apply(context, args)   // cab read
+                }, delayTime);
+            }
+        }
+
+      </script>
+</body>
+</html>
