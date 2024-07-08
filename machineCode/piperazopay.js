@@ -35,3 +35,8 @@ const method = pipe(getName, makeUpperCase, slice);
 const value = method({ name: 'chaicode' });
 
 console.log(value); 
+
+
+
+
+
