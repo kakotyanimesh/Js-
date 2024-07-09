@@ -14,6 +14,8 @@
 //     => 1 < 2 < 3 < 4 < 5 < 6 < 7 < 8 
 //     => [1, 2, 3, 4, 5, 6, 7, 8]
 
+// boxes needs in interview
+
 
 function mergeSort(array) {
     // base case single word in array

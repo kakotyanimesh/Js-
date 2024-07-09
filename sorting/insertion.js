@@ -12,4 +12,4 @@ function insertionSwap(array) {
     return array
 }
 
-console.log(insertionSwap([1, 6, 7, 3, 9]));32
+console.log(insertionSwap([1, 6, 7, 3, 9]));
