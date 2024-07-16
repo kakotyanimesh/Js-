@@ -12,7 +12,7 @@ class linkedList{
 }
 
 linkedList.prototype.insertAtBeginning = function (data){
-    const newNode = new Node(data)
+    const newNode = new Node(data, this.head)
     this.head = newNode;
 }
 
