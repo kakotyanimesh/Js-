@@ -54,7 +54,7 @@ doublyLinkedList.prototype.atgiven = function (prevNode, data) {
 
     prevNode.next = newNode
 
-    if(newNode === null){
+    if(newNode.next === null){
         this.tail = newNode
     }
 
